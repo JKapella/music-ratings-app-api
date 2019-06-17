@@ -14,3 +14,15 @@ const app = express();
 const port = 9001;
 
 var jsonParser = bodyParser.json();
+
+
+
+
+
+
+
+
+
+app.listen(port, () => {
+    console.log('Server is running!');
+});
