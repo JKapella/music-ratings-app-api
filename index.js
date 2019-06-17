@@ -16,7 +16,10 @@ const port = 9001;
 var jsonParser = bodyParser.json();
 
 
-
+app.route('/ratedAlbums')
+    .get((req, res) => {
+    
+    })
 
 
 
