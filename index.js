@@ -18,7 +18,19 @@ var jsonParser = bodyParser.json();
 
 app.route('/ratedAlbums')
     .get((req, res) => {
-    
+        client.connect((err) => {
+            if (!err) {
+                const db = client.db(dbName);
+                db.collection('ratedAlbums').find({}).toArray((err, result) => {
+                    res.json(result);
+                    console.log(result)
+                })
+            } else {
+                res.json({
+                    message: 'Error getting entries from database!'
+                });
+            }
+        })
     })
 
 
