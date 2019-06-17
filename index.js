@@ -22,8 +22,11 @@ app.route('/ratedAlbums')
             if (!err) {
                 const db = client.db(dbName);
                 db.collection('ratedAlbums').find({}).toArray((err, result) => {
-                    res.json(result);
-                    console.log(result)
+                    res.json({
+                        status: 200,
+                        message: 'Request ok, getting rated albums',
+                        data: result
+                    });
                 })
             } else {
                 res.json({
