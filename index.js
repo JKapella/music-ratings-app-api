@@ -25,7 +25,7 @@ app.route('/ratedAlbums')
                     res.json({
                         status: 200,
                         message: 'Request ok, getting rated albums',
-                        data: result
+                        data: [result]
                     });
                 })
             } else {
@@ -36,6 +36,29 @@ app.route('/ratedAlbums')
                 });
             }
         })
+    })
+    .post(jsonParser, (req, res) => {
+        var data = req.body;
+        if (typeof data !== undefined && data !== '') {
+            client.connect((err) => {
+                if (!err) {
+                    const db = client.db(dbName);
+                    db.collection('ratedAlbums').insertOne(data, (err, result) => {
+                        res.json({
+                            status: 200,
+                            message: 'new item added',
+                            data: [data]
+                        })
+                    })
+                } else {
+                    res.json({
+                        status: 500,
+                        message: 'Item not added, error adding to database',
+                        data: []
+                    })
+                }
+            })
+        }
     })
 
 
