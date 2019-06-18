@@ -30,7 +30,9 @@ app.route('/ratedAlbums')
                 })
             } else {
                 res.json({
-                    message: 'Error getting entries from database!'
+                    status: 500,
+                    message: 'Error getting entries from database!',
+                    data: []
                 });
             }
         })
